@@ -1,13 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from main.models import BlogPost
+from django.template import Context
+from django.utils import timezone
 
-# Create your views here.
+def create_blogpost(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        timestamp = request.POST.get('timestamp')
+
+        # Convert the timestamp string to a datetime object
+        timestamp = timezone.datetime.strptime(timestamp, '%Y-%m-%dT%H:%M')
+
+        # Create a new BlogPost instance
+        new_blogpost = BlogPost(title=title, body=body, timestamp=timestamp)
+
+        # Save the instance to the database
+        new_blogpost.save()
+
+    # Render the form template for GET requests
+    return render(request, 'main/record.html')
+def show_blogpost(request):
+    all_objects = BlogPost.objects.all()
+    return render(request, 'main/show.html', {'all_objects': all_objects})
 
 def index(request):
-    context: dict = {
-        "title" : 'Home',
-        "content" : 'Главная страница магазина'
-    }
+    posts = BlogPost.objects.all()
+    context = Context({'post' : posts})
     return render(request, 'main/index.html', context)
     # return HttpResponse("<h4>Main Page</h4>")
 

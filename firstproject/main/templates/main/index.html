@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    {% for post in posts %}
+    <title>{{post.title}}</title>
+    {% endfor %}
 </head>
 <body>
-    <p>{{content}}</p>
+    {% for post in posts %}
+    <p>{{post.content}}</p>
+    {% endfor %}
 </body>
 </html>
