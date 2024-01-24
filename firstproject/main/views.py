@@ -4,6 +4,7 @@ from main.models import BlogPost
 from django.template import Context
 from django.utils import timezone
 
+
 def create_blogpost(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -25,9 +26,13 @@ def show_blogpost(request):
     all_objects = BlogPost.objects.all()
     return render(request, 'main/show.html', {'all_objects': all_objects})
 
+def show_results(request):
+    query = request.GET.get('query')
+    filtered_objects = BlogPost.objects.all().filter(title__icontains=query)
+    return render(request, 'main/show.html', {'all_objects' : filtered_objects})
+
 def index(request):
     posts = BlogPost.objects.all()
-    context = Context({'post' : posts})
-    return render(request, 'main/index.html', context)
+    return render(request, 'main/index.html', {'post' : posts})
     # return HttpResponse("<h4>Main Page</h4>")
 

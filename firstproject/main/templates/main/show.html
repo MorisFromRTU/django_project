@@ -2,28 +2,34 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Blog Posts</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Show Blog Posts</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static './css/styles.css' %}">
+    </head>
 <body>
 
-<h2>Show Blog Posts</h2>
-{% for object in all_objects%}
-<label for="id_title">{{object.title}}</label>
-<h3 id="id_title" name="title"></h3>
+<h2>Книги русских писателей</h2>
+<div class="search-container">
+    <h2>Поиск по названию</h2>
+    <form action="{% url 'show_results' %}" method="get">
+        <input type="text" name="query" placeholder="Впишите название книги">
+        <button type="submit">Поиск</button>
+    </form>
+</div>
+<div class="blog-container">
 
-<br>
+    {% for object in all_objects %}
+        <div class="blog-card">
+            <h3 class="blog-title">{{ object.title }}</h3>
+            <p class="blog-body">{{ object.body }}</p>
+            <p class="blog-timestamp">Опубликовано: {{ object.timestamp }}</p>
+        </div>
+    {% endfor %}
+</div>
 
-<label for="id_body">{{object.body}}</label>
-<h3 id="id_body" name="body"></h3>
-
-<br>
-
-<label for="id_timestamp">{{object.timestamp}}:</label>
-<h3 id="id_timestamp" name="timestamp"></h3>
-{% endfor%}
 
 </body>
 </html>
