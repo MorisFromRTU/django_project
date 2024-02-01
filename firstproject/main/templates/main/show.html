@@ -13,7 +13,7 @@
 
 <h2>Книги русских писателей</h2>
 <div class="search-container">
-    <h2>Поиск по названию</h2>
+    <h2>Поиск по имени</h2>
     <form action="{% url 'show_results' %}" method="get">
         <input id="search-input" type="text" name="query" placeholder="Впишите название книги">
         <button type="submit">Поиск</button>
@@ -21,11 +21,20 @@
 </div>
 <div class="blog-container">
 
-    {% for object in all_objects %}
+    <!-- {% for object in all_objects %}
         <div class="blog-card">
             <h3 class="blog-title">{{ object.title }}</h3>
             <p class="blog-body">{{ object.body }}</p>
             <p class="blog-timestamp">Опубликовано: {{ object.timestamp }}</p>
+        </div>
+    {% endfor %} -->
+
+
+    {% for object in all_objects %}
+        <div class="blog-card">
+            <h3 class="blog-title">{{ object.user.username}}</h3>
+            <p class="blog-body">{{ object.user.first_name}} {{ object.user.last_name }}</p>
+            <p class="blog-timestamp">Группа №: {{ object.group.number }}</p>
         </div>
     {% endfor %}
 </div>

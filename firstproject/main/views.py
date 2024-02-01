@@ -29,7 +29,7 @@ def show_blogpost(request):
 
 def show_results(request):
     query = request.GET.get('query', '')
-    filtered_objects = BlogPost.objects.all().filter(title__icontains=query)
+    filtered_objects = Student.objects.all().filter(user__username__icontains=query)
     return render(request, 'main/show.html', {'all_objects' : filtered_objects})
 
 def index(request):
@@ -49,6 +49,10 @@ def registration(request):
         new_student = Student(user=user, group_id=group.id)
         new_student.save()
     return render(request, 'main/registration.html')
+
+def show_students(request):
+    all_objects = Student.objects.all()
+    return render(request, 'main/show.html', {'all_objects': all_objects})
 
 def group_registration(request):
     if request.method == 'POST':
