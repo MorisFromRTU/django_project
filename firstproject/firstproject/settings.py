@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'firstproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'first',
+        'NAME': 'app',
         'USER': 'postgres',
         'PASSWORD': 'MORISMA',
         'HOST': 'localhost',
