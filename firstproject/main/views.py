@@ -59,4 +59,4 @@ def group_registration(request):
         number = request.POST.get('group_number')
         new_group = Group(number=number)
         new_group.save()
-    return render(request, 'main/registration.html')
+    return render(request, 'main/new_group.html')

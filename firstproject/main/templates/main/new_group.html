@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Post</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static './css/registration.css' %}">
+</head>
+<body>
+
+
+<h2>Create New Group</h2>
+
+<form method="post" action="{% url 'group_registration' %}">
+    {% csrf_token %}
+
+    <label for="group">number</label>
+    <input type="text" id="id_group" name="group_number" required>
+
+    <button type="submit">Create New Group</button>
+</form>
+
+</body>
+</html>

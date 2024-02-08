@@ -1,5 +1,3 @@
-<!-- myapp/templates/create_blogpost.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,17 +38,6 @@
 
     <br>
     <button type="submit">Create New User</button>
-</form>
-
-<h2>Create New Group</h2>
-
-<form method="post" action="{% url 'group_registration' %}">
-    {% csrf_token %}
-
-    <label for="group">number</label>
-    <input type="text" id="id_group" name="group_number" required>
-
-    <button type="submit">Create New Group</button>
 </form>
 
 </body>
